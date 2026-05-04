@@ -62,6 +62,9 @@ wc shows the amount of words, bytes and lines in "directory"
 -l shows the amount of lines in "directory"  
 -w shows the amount of words in "directory"  
 ```cat "directory"``` show the contents of a file  
+```sudo cat /etc/shadow``` shows hashed password of users  
+
+### ```ls/``` specific
 ```ls "directory"``` Shows files and folders inside the specified directory  
 If no directory is given, it lists the current directory  
 ```ls /``` Shows top-level directories in the filesystem  
