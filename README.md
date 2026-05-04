@@ -15,11 +15,10 @@
 - RR = Rolling Release (Ständige Updates (Sicherheit, System), keine neuinstallationen nötig)
 - Hyper visor 1 = Virtualisierung (Bare Metall)
 - Hyper Visor 2 = Virtualisierung (VM-Ware, Oracle Virtual Box)
-- 
 - Container Management (Docker, Podman)
 
 ### NoteNotes
-- Linux abgesehen von Enterprise Versionen meist Kostenlos
+- Linux besides Enterprise abgesehen von Enterprise Versionen meist Kostenlos
 - Treiber bei Linux = Module
 
 ### Hyper Visor 1
@@ -35,12 +34,20 @@
 
 ### Container-Management
 - Erzeugen von Instanzen um eine Hohe Datenlast von Anwendungen abzufangen (Wie Objekte in OOP) Container-Instanzen erzeugen, Löschen
-- 
+  
 # Linux Command Consol Prompts
 - list/ls -al Shows all Commands for the current state
 - man/manual "command z.B. ls" shows what the command does
+- cd "folder" goes into a folder and be used multiple times to go into deeper folders
+- q goes back one folder or menu
+- clear clears the command consolec
 
-### Überprüfungs Befehl
+### Überprüfungs Befehl/Check Command
 - Sha256sum -c "Datei" = Secure Hash Algorithm, 256sum = Prüfsumme, -c/--check Überprüft ISO-Datei Prüfsumme in "Datei", "Datei" z.B. ISO
 
-
+# Unix Shell
+- echo "Text oder $0" gibt den Text 'text' aus oder bei $0 bash erste stelle
+- exit goes back one folder/menu or closes the consol if in no menu
+- id
+- su - = switch user
+- usermod -aG wheel "username" adds user to certain group
