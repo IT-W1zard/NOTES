@@ -63,10 +63,11 @@ wc shows the amount of words, bytes and lines in "directory"
 -w shows the amount of words in "directory"  
 ```cat "directory"``` show the contents of a file  
 ```sudo cat /etc/shadow``` shows hashed password of users  
+```cat /etc/passwd``` shows user data configurations   
 ```reboot``` reboots the system  
 ```history``` shows history of used commands  
-```print current directory``` shows current directory
-```mkdir "name"``` makes a new folder
+```print current directory``` shows current directory  
+```mkdir "name"``` makes a new folder  
 
 ### ```ls/``` specific
 ```ls "directory"``` Shows files and folders inside the specified directory  
