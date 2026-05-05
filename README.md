@@ -124,7 +124,9 @@
 | `tree` | Ermöglicht die Anzeige einer Verzeichnisstruktur in der Kommandozeile |
 | `uname -a` | Zeigt alle wichtigen Systeminformationen an |
 | `stat` | Zeigt detaillierte Informationen über eine Datei oder ein Verzeichnis |
-
+| `rm` | Löscht Dateien oder Verzeichnisse |
+| `-r` | Löscht ein Verzeichnis samt Inhalt |
+| `-i` | Fragt vor jedem Löschen nach einer Bestätigung |
 ## Datei und Textverarbeitung
 | Befehl | Funktion |
 | :--- | :--- |
