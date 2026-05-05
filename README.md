@@ -122,6 +122,8 @@
 | `history` | Zeigt den Verlauf der bisher eingegebenen Befehle an |
 | `reboot` | Startet das System neu |
 | `tree` | Ermöglicht die Anzeige einer Verzeichnisstruktur in der Kommandozeile |
+| `uname` | Zeigt den Systemnamen an |
+| `uname -a` | Zeigt alle wichtigen Systeminformationen an |
 
 ## Datei und Textverarbeitung
 | Befehl | Funktion |
