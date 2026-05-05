@@ -115,6 +115,7 @@
 | `where DATEI` | Absoluter Pfad zur ausführbaren Datei/Programm |
 | `whereis DATEI` | Absoluter Pfad zur ausführbaren Datei/Programm + Biliotheken + Man Pages |
 | `man BEFEHL` | Öffnet das Handbuch, Manual, für den jeweiligen Befehl |
+| `man man` | Öffnet das Handbuch, Manual, für den man Befehl |
 | `man info --help` | Öffnet die Info seite, für den jeweiligen Befehls |
 | `q` | Beendet Programme wie `less` oder `man` |
 | `exit` | Meldet den aktuellen Benutzer ab oder schließt das Terminal |
