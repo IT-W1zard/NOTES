@@ -92,6 +92,7 @@
 | `clear` | Leert die Konsolenausgabe |
 | `pwd` | Print Working Directory. Zeigt den absoluten Pfad des aktuellen Verzeichnisses an |
 | `cd ~` | Wechselt in das eigene Home Verzeichnis |
+| `cd /` | Wechselt in das Wurzel Verzeichnis |
 | `cd ..` | Wechselt eine Verzeichnisebene nach oben |
 | `cd ORDNER` | Wechselt in das angegebene Verzeichnis |
 | `ls` | Zeigt Dateien und Ordner im aktuellen Verzeichnis an |
