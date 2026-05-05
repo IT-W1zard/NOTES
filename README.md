@@ -127,7 +127,7 @@
 | `rm` | Löscht Dateien oder Verzeichnisse |
 | `-r` | Löscht ein Verzeichnis samt Inhalt |
 | `-i` | Fragt vor jedem Löschen nach einer Bestätigung |
-| `users` | Zeigt alle aktuell angemeldeten Benutzer |
+| `users` | Zeigt alle aktuell angemeldeten Benutzer an |
 
 ## Datei und Textverarbeitung
 | Befehl | Funktion |
