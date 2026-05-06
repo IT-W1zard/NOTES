@@ -146,8 +146,9 @@
 | `date +%Y` | Zeigt das aktuelle Jahr vierstellig an |
 | `date +%F` | Formatiert die Datumsausgabe als vollständiges Datum |
 | `> DATEI` | Leitet die Konsolenausgabe in die angegebene Datei um |
-| `mkdir´ | Erstellt ein Verzeichniss |
+| `mkdir` | Erstellt ein Verzeichniss |
 | `mv` | Bewegt eine Datei von A nach B |
+| `history > Name$(date +%f).txt` | Speichert den Verlauf der bisher eingegebenen Befehle als liste mit dem Format Y%m%D |
 
 ## Benutzer und Rechteverwaltung
 | Befehl | Funktion |
