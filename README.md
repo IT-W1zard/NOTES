@@ -130,6 +130,10 @@
 | `-i` | Fragt vor jedem Löschen nach einer Bestätigung |
 | `users` | Zeigt alle aktuell angemeldeten Benutzer an |
 | `systemctl status DIENST` | Zeigt den Status des angegebnen Dienstes an |
+| `lpstat -t` | Zeigt den Status aller Drucker |
+| `lp -d DRUCKER DATEI` | Druck die Datei im angegebenen Drucker |
+| `lpq -a` | Zeigt alle Druckerschleifen |
+| `lpq -p DRUCKER` | Zeigt Druckerschleife vom angegebenen Drucker |
 
 ## Datei und Textverarbeitung
 | Befehl | Funktion |
