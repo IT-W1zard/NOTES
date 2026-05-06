@@ -1,0 +1,145 @@
+  144  man bash
+  145  man man
+  146  man ls
+  147  man mount
+  148  man usermod
+  149  whatis ls
+  150  whatis mount
+  151  sudo mandb
+  152  clear
+  153  whatis mount
+  154  man mount
+  155  man 2 mount
+  156  info mount
+  157  mount --help
+  158  clear
+  159  mount --help
+  160  clear
+  161  ls --help
+  162  clear
+  163  ls --help
+  164  clear
+  165  ls -h
+  166  ls -lh
+  167  ls -l
+  168  clear
+  169  info ls
+  170  info mount
+  171  cd /usr/share/info
+  172  ls
+  173  info nano
+  174  clear
+  175  cd ~
+  176  cd /usr/bin
+  177  ls firefox
+  178  ./firefox
+  179  source firefox
+  180  cd /usr/bin
+  181  . firefox
+  182  cd /usr/bin
+  183  firefox
+  184  tree
+  185  clea
+  186  clear
+  187  cd ~
+  188  tree
+  189  which firefox
+  190  whereis firefox
+  191  clear
+  192  id
+  193  whoami
+  194  who
+  195  loginctl list-seat
+  196  loginctl list-seats
+  197  loginctl seat-status seat0
+  198  clear
+  199  w
+  200  uname
+  201  uname -a
+  202  uname -m
+  203  man uname
+  204  uname -v
+  205  man uname
+  206  uname -r
+  207  lscpu
+  208  clear
+  209  free -m
+  210  free -h
+  211  df -h
+  212  clear
+  213  cd Dokumente
+  214  mkdir Kontinente
+  215  ls
+  216  mkdir Kontinente/Europa/Italien
+  217  mkdir -p Kontinente/Europa/Italien
+  218  tree
+  219  ls
+  220  touch Kotinente/Europa/Italien/maus
+  221  touch Kontinente/Europa/Italien/maus
+  222  cd Kontinente/Europa/Italien/
+  223  ls
+  224  ls -l
+  225  cd ~
+  226  ls -l
+  227  cd Kontinente/Europa/Italien/
+  228  cd Dokument/Kontinente/Europa/Italien/
+  229  cd Dokumente/Kontinente/Europa/Italien/
+  230  clear
+  231  nano maus
+  232  cat maus
+  233  tac maus
+  234  cat -l maus
+  235  man cat
+  236  cat -n maus
+  237  nano maus1
+  238  cat -n maus > maus2
+  239  cat maus2
+  240  cat maus
+  241  clear
+  242  cat maus
+  243  cat maus1
+  244  diff maus maus1
+  245  clear
+  246  cd ~/Dokumente
+  247  tree
+  248  cp ./Kontinente/Europa/Italien ./Kontinente
+  249  cp -r ./Kontinente/Europa/Italien ./Kontinente
+  250  tree
+  251  mkdir -p ./Kontinente/Asien
+  252  tree
+  253  cp -r ./Kontinente/Europa ./Kontinente/Italien ./Kontinente/Asien/
+  254  tree
+  255  clear
+  256  ls
+  257  rm Neu
+  258  rm -f Neu
+  259  rm -rf Neuj
+  260  rm -rf Neu
+  261  tree
+  262  rm -rf ./Kontinente/Italien
+  263  rm -rf ./Kontinente/Europa
+  264  tree
+  265  mv ./Kontinente/Italien/maus ./Kontinente/Asien
+  266  mv ./Kontinente/Italien/maus ./Kontinente/Asien/maus
+  267  mv ./Kontinente/Asien/Italien/maus ./Kontinente/Asien
+  268  tree
+  269  mv ./Kontinente/Asien/Italien ./Kontinente
+  270  tree
+  271  file ./Kontinente/Italien/maus1
+  272  ls
+  273  cd ..
+  274  ls
+  275  stat ./Dokumente
+  276  stat ./Kontinente/Italien/maus1
+  277  tree
+  278  stat ./Kontinente/Italien/
+  279  stat ./Dokumente/Kontinente/Italien/maus1
+  280  clear
+  281  tree
+  282  rm -ri ./Kontinente/Italien
+  283  rm -ri ./Dokumente/Kontinente/Italien
+  284  user
+  285  echo $USER
+  286  users
+  287  history | less
+  288  history 145 > rockyHis$(date +%Y%m%d-%H%M).txt
