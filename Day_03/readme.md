@@ -1,102 +1,114 @@
-# 🔐 Linux Essentials - Tag 03
+# 🖨️ Linux Essentials - Tag 03
 
 ![Linux Essentials Day 03 Header](./header.png)
 
-Am dritten Tag dreht sich alles um die Sicherheit: **Dateirechte und Besitzverhältnisse**. Wir lernen, wie Linux den Zugriff auf Dateien steuert, was hinter dem Oktalsystem steckt und wie man administrative Rechte sicher einsetzt.
+Am dritten Tag haben wir uns mit der Systemkonfiguration, dem Drucksystem CUPS und fortgeschrittenen Shell-Techniken wie Aliases, Umgebungsvariablen und komplexen I/O-Umleitungen beschäftigt.
 
 ---
 
 ## 📑 Inhaltsverzeichnis
-- [Das Linux-Rechtesystem](#-das-linux-rechtesystem)
-- [Das Oktalsystem](#-das-oktalsystem)
-- [chmod: Zugriffsrechte ändern](#-chmod-zugriffsrechte-ändern)
-- [chown: Besitzverhältnisse ändern](#-chown-besitzverhältnisse-ändern)
-- [Spezielle Berechtigungen (SUID, SGID, Sticky)](#-spezielle-berechtigungen-suid-sgid-sticky)
-- [Best Practices für Sicherheit](#-best-practices-für-sicherheit)
+- [Drucken mit CUPS](#-drucken-mit-cups)
+- [Shell-Konfigurationsdateien](#-shell-konfigurationsdateien)
+- [Aliases & Funktionen](#-aliases--funktionen)
+- [Umgebungsvariablen](#-umgebungsvariablen)
+- [Fortgeschrittene I/O-Umleitung](#-fortgeschrittene-io-umleitung)
+- [Suchen & Verarbeiten (find & xargs)](#-suchen--verarbeiten-find--xargs)
 - [Zurück zum Hauptmenü](#-zurück-zum-hauptmenü)
 
 ---
 
-## 🛡 Das Linux-Rechtesystem
-Jede Datei und jedes Verzeichnis in Linux gehört einem bestimmten **Besitzer** und einer **Gruppe**. Die Rechte werden in drei Kategorien unterteilt:
+## 🖨️ Drucken mit CUPS
+Das **Common UNIX Printing System (CUPS)** ist der Standard für Druckdienste unter Linux.
 
-| Kürzel | Kategorie | Beschreibung |
-| :---: | :--- | :--- |
-| **u** | **User** | Der Besitzer der Datei. |
-| **g** | **Group** | Mitglieder der Gruppe, der die Datei gehört. |
-| **o** | **Others** | Alle anderen Benutzer auf dem System. |
-
-### Die drei Grundrechte
-- **r (Read):** Lesen der Datei / Auflisten eines Verzeichnisses.
-- **w (Write):** Ändern der Datei / Erstellen & Löschen im Verzeichnis.
-- **x (Execute):** Ausführen der Datei / Betreten eines Verzeichnisses.
-
----
-
-## 🔢 Das Oktalsystem
-Anstatt Buchstaben nutzt Linux oft Zahlen zur Darstellung von Rechten. Diese basieren auf einem einfachen Binärsystem:
-
-| Wert | Recht | Bedeutung |
-| :---: | :---: | :--- |
-| **4** | **r** | Read (Lesen) |
-| **2** | **w** | Write (Schreiben) |
-| **1** | **x** | Execute (Ausführen) |
-| **0** | **-** | Keine Rechte |
-
-**Beispiel:** 
-- `7` (4+2+1) = `rwx` (Vollzugriff)
-- `5` (4+0+1) = `r-x` (Lesen & Ausführen)
-- `644` = Besitzer (6=rw-), Gruppe (4=r--), Andere (4=r--)
-
----
-
-## 🔧 chmod: Zugriffsrechte ändern
-Der Befehl `chmod` (Change Mode) wird verwendet, um die Berechtigungen anzupassen.
-
-### Numerische Methode
-```bash
-chmod 755 script.sh  # rwxr-xr-x (Besitzer darf alles, Rest nur Lesen/Ausführen)
-chmod 600 private.txt # rw------- (Nur Besitzer darf Lesen/Schreiben)
-```
-
-### Symbolische Methode
-| Befehl | Aktion |
+### Wichtige Befehle
+| Befehl | Funktion |
 | :--- | :--- |
-| `chmod u+x <Datei>` | Fügt dem Besitzer das Ausführrecht hinzu. |
-| `chmod g-w <Datei>` | Entfernt der Gruppe das Schreibrecht. |
-| `chmod a+r <Datei>` | Gibt allen (all) das Leserecht. |
+| `systemctl status cups` | Prüft, ob der Druckdienst läuft. |
+| `lpstat -t` | Zeigt den gesamten Status des Drucksystems (Drucker, Jobs, Server). |
+| `lp -d <Drucker> <Datei>` | Sendet eine Datei an einen spezifischen Drucker. |
+| `lpq -P <Drucker>` | Zeigt die Warteschlange eines Druckers an. |
+| `lpstat -p` | Listet alle verfügbaren Drucker auf. |
+
+---
+
+## ⚙️ Shell-Konfigurationsdateien
+Wo werden Einstellungen dauerhaft gespeichert? Es gibt einen Unterschied zwischen systemweiten und benutzerspezifischen Dateien.
+
+- **Systemweit (für alle User):** `/etc/profile`, `/etc/bashrc`.
+- **Benutzerspezifisch:** `~/.bashrc`, `~/.bash_profile`.
 
 > [!TIP]
-> Nutzen Sie `chmod -R`, um Rechte rekursiv für einen ganzen Ordnerbaum zu ändern.
+> Nach Änderungen an der `.bashrc` muss diese neu eingelesen werden: `source ~/.bashrc`.
 
 ---
 
-## 👤 chown: Besitzverhältnisse ändern
-Mit `chown` (Change Owner) können Sie festlegen, wem eine Datei gehört.
+## 🚀 Aliases & Funktionen
+Machen Sie sich das Leben leichter, indem Sie lange Befehle abkürzen oder eigene Logik definieren.
 
+### Aliases
 ```bash
-sudo chown user1 datei.txt           # Ändert den Besitzer auf 'user1'
-sudo chown user1:gruppe1 datei.txt    # Ändert Besitzer und Gruppe gleichzeitig
-sudo chown :gruppe1 datei.txt         # Ändert nur die Gruppe (Alternative zu chgrp)
+alias la='ls -al'           # Erstellt einen temporären Alias
+unalias la                  # Entfernt den Alias wieder
+```
+*Um Aliase dauerhaft zu machen, müssen sie in die `~/.bashrc` eingetragen werden.*
+
+### Funktionen
+Einfache Skripte direkt in der Shell:
+```bash
+hallo() { 
+    echo "Herzlich Willkommen!"
+    echo "Hallo $USER"
+}
 ```
 
 ---
 
-## 🏗 Spezielle Berechtigungen (SUID, SGID, Sticky)
-Für fortgeschrittene Szenarien gibt es drei "Special Bits":
+## 🌍 Umgebungsvariablen
+Variablen speichern Informationen, auf die Programme zugreifen können.
 
-| Bit | Name | Funktion |
-| :--- | :--- | :--- |
-| **SUID** | Set User ID | Datei wird mit den Rechten des Besitzers (oft Root) ausgeführt. |
-| **SGID** | Set Group ID | Datei wird mit den Rechten der Gruppe ausgeführt / Neue Dateien erben die Gruppe des Ordners. |
-| **Sticky Bit** | Sticky Bit | In einem Ordner dürfen nur die Besitzer ihre eigenen Dateien löschen (typisch für `/tmp`). |
+- `printenv`: Zeigt alle Umgebungsvariablen an.
+- `echo $PATH`: Zeigt die Liste der Verzeichnisse, in denen nach Befehlen gesucht wird.
+- `env`: Listet Variablen auf oder führt Programme in einer modifizierten Umgebung aus.
+
+**Wichtige Variablen:**
+- `$USER`: Der aktuelle Benutzer.
+- `$HOME`: Das Heimatverzeichnis.
+- `$SHELL`: Die Standard-Shell.
 
 ---
 
-## 🔒 Best Practices für Sicherheit
-- **Prinzip der minimalen Rechte:** Geben Sie nur so viel Zugriff wie unbedingt nötig.
-- **Root vermeiden:** Arbeiten Sie als normaler Benutzer und nutzen Sie `sudo` nur für administrative Aufgaben.
-- **Sichere Verzeichnisse:** Sensible Daten (z.B. SSH-Keys) sollten immer auf `600` oder `700` gesetzt sein.
+## 🔄 Fortgeschrittene I/O-Umleitung
+Wir vertiefen das Wissen über Datenströme (`stdin`, `stdout`, `stderr`).
+
+| Operator | Funktion |
+| :---: | :--- |
+| `2>` | Leitet nur Fehlermeldungen (stderr) in eine Datei um. |
+| `2>>` | Hängt Fehlermeldungen an eine Datei an. |
+| `2> /dev/null` | "Verschluckt" Fehlermeldungen (sehr nützlich bei `find`). |
+| `&>` | Leitet sowohl stdout als auch stderr in dasselbe Ziel um. |
+
+---
+
+## 🔍 Suchen & Verarbeiten (find & xargs)
+Dateien finden und direkt Aktionen darauf ausführen.
+
+### find
+- `find . -name "dat*"`: Findet Dateien, die mit "dat" beginnen.
+- `find / -perm 755 2> /dev/null`: Findet Dateien mit spezifischen Rechten und ignoriert Fehlermeldungen.
+
+### xargs
+Übergibt die Ausgabe eines Befehls als Argumente an einen anderen Befehl.
+```bash
+find -name "*.old" | xargs rm     # Löscht alle gefundenen .old Dateien
+```
+
+---
+
+## 📚 Ressourcen & Dokumente
+Im [Assets](./assets)-Verzeichnis finden Sie weiterführende Informationen:
+
+- [CUPS & Konfiguration (PDF)](./assets/LinuxCUPS_KonfigDat_Alias_IO-Op.pdf)
+- [Historie Tag 03 (TXT)](./assets/rockyHis20260506-1548.txt)
 
 ---
 

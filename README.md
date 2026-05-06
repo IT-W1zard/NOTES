@@ -33,7 +33,7 @@ Hier findest du die detaillierten Unterlagen zu den einzelnen Schulungstagen:
 | :--- | :---: | :--- | :--- |
 | **Tag 01** | ✅ | Shell-Einführung, FHS, Historie | [📖 README](./Day_01/readme.md) |
 | **Tag 02** | ✅ | Hilfe-Systeme, Hardware, Fortg. Datei-OPs | [📖 README](./Day_02/README.md) |
-| **Tag 03** | ⏳ | TBD | [📖 README](./Day_03/readme.md) |
+| **Tag 03** | ✅ | CUPS, Shell-Konfig, Aliases, Redirects | [📖 README](./Day_03/README.md) |
 | **Tag 04** | ⏳ | TBD | [📖 README](./Day_04/readme.md) |
 | **Tag 05** | ⏳ | TBD | [📖 README](./Day_05/readme.md) |
 
@@ -137,7 +137,7 @@ Diese Themen werden in Kürze vertieft:
 ## 📈 System-Status (Dashboard)
 * **Aktuelle Umgebung:** Rocky Linux 9.x (RHEL-basiert)
 * **Shell:** Bash / ZSH + Oh My Zsh (Konfiguriert)
-* **Fortschritt:** 6.7% (2 von 30 Modulen abgeschlossen)
+* **Fortschritt:** 10% (3 von 30 Modulen abgeschlossen)
 
 ---
 
