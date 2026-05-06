@@ -1,0 +1,111 @@
+    1  exit
+    2  echo $0
+    3  echo 'Hallo'
+    4  echo $0
+    5  sh
+    6  exit
+    7  history
+    8  history | less
+    9  history 5 | less
+   10  clear
+   11  id
+   12  su -
+   13  clear
+   14  id
+   15  restart
+   16  reboot
+   17  id
+   18  dnf update
+   19  sudo dnf update
+   20  sudo dnf upgrade
+   21  clear
+   22  cd ..
+   23  ls
+   24  cd ..
+   25  ls
+   26  ls ./boot
+   27  ls boot
+   28  ls
+   29  cd ~
+   30  ls
+   31  cd ..
+   32  ls
+   33  clear
+   34  cd ~
+   35  ls
+   36  cd ..
+   37  ls
+   38  cd ..
+   39  ls
+   40  cd ~
+   41  cd /
+   42  cd /home/simus
+   43  cd /
+   44  cd ~/Dokumente
+   45  cd /
+   46  cd /home/simus
+   47  cd ~/Dokumente
+   48  cd /home
+   49  pwd
+   50  cd ./simus/Dokumente
+   51  mkdir Neu
+   52  cd Neu
+   53  echo $?
+   54  pwd
+   55  clear
+   56  cd /
+   57  ls
+   58  ls boot
+   59  ls bin
+   60  clear
+   61  ls bin | less
+   62  ls bin | wc
+   63  man wc
+   64  ls bin | wc -c
+   65  ls bin | wc -m
+   66  ls bin | wc -l
+   67  man wc
+   68  ls dev | wc -m
+   69  ls dev | wc -l
+   70  ls dev | less
+   71  ls sbin | wc -l
+   72  ls sbin | less
+   73  ls sbin | wc -c
+   74* 
+   75* 
+   76  man wc
+   77  ls sbin | wc -w
+   78  clear
+   79  ls
+   80  ls etc | wc -l
+   81  ls etc | less
+   82  cat /etc/passwd | less
+   83  ls usr | wc -l
+   84  ls usr
+   85  ls var | wc -l
+   86  ls var
+   87  ls /var/kerberos | wc -l
+   88  ls /var/kerberos
+   89  ls /var/kerberos/krb5/ | wc -l
+   90  ls /var/kerberos/krb5
+   91  cd /var/kerberos/krb5/user/
+   92  ls
+   93  ls -al
+   94  clear
+   95  cd ~
+   96  cat /etc/passwd | less
+   97  cat /etc/shadow | less
+   98  sudo cat /etc/shadow | less
+   99  history | less
+  100  history 10 | less
+  101  history > rockyHis$(date +%Y%m%d-%H%M).txt
+  102  ls
+  103  date
+  104  date +%Y
+  105  date +%y
+  106  date +%d
+  107  date +%D
+  108  man date
+  109  date +%F
+  110  man date
+  111  history > rockyHis$(date +%Y%m%d-%H%M).txt
