@@ -129,6 +129,7 @@
 | `-r` | Löscht ein Verzeichnis samt Inhalt |
 | `-i` | Fragt vor jedem Löschen nach einer Bestätigung |
 | `users` | Zeigt alle aktuell angemeldeten Benutzer an |
+| `systemctl status DIENST` | Zeigt den Status des angegebnen Dienstes an |
 
 ## Datei und Textverarbeitung
 | Befehl | Funktion |
