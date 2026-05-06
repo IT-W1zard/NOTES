@@ -1,0 +1,150 @@
+  312  whatis ls
+  313  whatis mount
+  314  type cd
+  315  type ls
+  316  type mount
+  317  type grep
+  318  which ls
+  319  systemctl status cups
+  320  systemctl status
+  321  clear
+  322  systemctl status ftp
+  323  systemctl status ssh
+  324  clear
+  325  lpstat -t
+  326  tree
+  327  clear
+  328  lpstat -t
+  329  nano datNeu
+  330  ls
+  331  lp -d MeinDruckerNE2 datNeu
+  332  tree
+  333  lp -d MeinDruckerNE2 ./Dokumente/Kontinente/Italien/maus2 
+  334  lpstat -t
+  335  lpq -a
+  336  lpq MeinDruckerNE2
+  337  lpq -d MeinDruckerNE2
+  338  lpq -P MeinDruckerNE2
+  339  clear
+  340  ls
+  341  ls -a
+  342  cd /etc
+  343  ls -a
+  344  clear
+  345  ls -al /etc/profile /etc/bashrc
+  346  cat /etc/bash | less
+  347  cat /etc/bashrc | less
+  348  cd ~
+  349  ls -a
+  350  cat .bashrc | less
+  351  alias la='ls -al'
+  352  la
+  353  which la
+  354  clear
+  355  la
+  356  nano .bashrc
+  357  la
+  358  source .bashrc
+  359  la
+  360  clear
+  361  a=hallo
+  362  echo $a
+  363  hallo() { echo 'HierDaDort'; echo 'Huhu'; echo '   ';}
+  364  hallo
+  365  echo $a
+  366  la
+  367  clear
+  368  hallo() { echo 'Herzlich Willkommen!'; echo -e "Hallo $USER";}
+  369  hallo
+  370  hallo() { echo 'Herzlich Willkommen!'; echo -e 'Hallo $USER';}
+  371  hallo
+  372  printenv
+  373  clear
+  374  printenv | wc -l
+  375  printenv | less
+  376  printenv USER
+  377  printenv PATH
+  378  printenv HOMe
+  379  printenv HOME
+  380  printenv SHELL
+  381  printenv | less
+  382  env | less
+  383  nano .bashrc
+  384  hallo
+  385  nano .bashrc
+  386  hallo
+  387  nano .bashrc
+  388  source .bashrc
+  389  nano .bashrc
+  390  source .bashrc
+  391  hallo
+  392  source .bashrc
+  393  nano .bashrc
+  394  alias zk='cd ..'
+  395  zk
+  396  unalias zk
+  397  zk
+  398  man sudo
+  399  cd ~
+  400  sudo cd ~
+  401  dnf upgrade
+  402  sudo dnf upgrade
+  403  cat /etc/service | head -30
+  404  sudo cat /etc/service | head -30
+  405  cat /etc/services | head -30
+  406  cat /etc/services | tail -20
+  407  echo $PWD
+  408  cd ..
+  409  echo $PWD
+  410  which pwd
+  411  clear
+  412  cd ~
+  413  cat -n /etc/services | head -80 | less
+  414  cat -n /etc/services | wc -l
+  415  cat -n /etc/services | head -80 | tail -60 | less
+  416* 
+  417  tail -n +20 /etc/services | head -61
+  418  clear
+  419  grep -n "^" /etc/services | grep -E "^"[2-7][0-9]:|^80:" | cut -d: -f2-
+  420  grep -n "^" /etc/services | grep -E "^[2-7][0-9]:|^80:" | cut -d: -f2-
+  421  clear
+  422  ls
+  423  cat datNeu
+  424  nano datei1
+  425  cat datei1
+  426  cat datei1 > datei2
+  427  cat datei2
+  428  nano datei1
+  429  cat datei1
+  430  cat datei2
+  431  cat datei1 > datei2
+  432  cat datei2
+  433  cat datei1 > datei2
+  434  cat datei2
+  435  cat datei1 >> datei2
+  436  cat datei2
+  437  find / | less
+  438  find -name 'dat*'
+  439  find -perm 755 | wc -l
+  440  find -perm 755 | less
+  441  find -perm 755 2> /dev/null | wc -l
+  442  find / 2>> datErr
+  443  ls
+  444  cat datErr
+  445  find / 2> datErr
+  446  cat datErr
+  447  clear
+  448  touch hallo.txt
+  449  touch halli.txt
+  450  ls
+  451  cp hallo.txt hallo.old
+  452  cp halli.txt halli.old
+  453  ls
+  454  find -name '*.old'
+  455  find -name '*.old' | rm
+  456  find -name '*.old' | xargs rm
+  457  ls
+  458  echo hallo.txt hallo.old halli.txt halli.old | xargs -n2 mv
+  459  ls
+  460  history
+  461  history 150 > rockyHis$(date +%Y%m%d-%H%M).txt
