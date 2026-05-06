@@ -114,6 +114,7 @@
 | `ls -al` | Zeigt alle Dateien inklusive versteckter mit detaillierten Rechten und Status an |
 | `where DATEI` | Absoluter Pfad zur ausführbaren Datei/Programm |
 | `whereis DATEI` | Absoluter Pfad zur ausführbaren Datei/Programm + Biliotheken + Man Pages |
+| `whatis BEFEHL` | zeigt eine Beschreibung des Kommandos an |
 | `man BEFEHL` | Öffnet das Handbuch, Manual, für den jeweiligen Befehl |
 | `man man` | Öffnet das Handbuch, Manual, für den man Befehl |
 | `man info --help` | Öffnet die Info seite, für den jeweiligen Befehls |
@@ -145,7 +146,8 @@
 | `date +%Y` | Zeigt das aktuelle Jahr vierstellig an |
 | `date +%F` | Formatiert die Datumsausgabe als vollständiges Datum |
 | `> DATEI` | Leitet die Konsolenausgabe in die angegebene Datei um |
-| `history > datei.txt` | Speichert den kompletten Befehlsverlauf in einer Textdatei |
+| `mkdir´ | Erstellt ein Verzeichniss |
+| `mv` | Bewegt eine Datei von A nach B |
 
 ## Benutzer und Rechteverwaltung
 | Befehl | Funktion |
@@ -155,6 +157,7 @@
 | `sudo usermod -aG wheel USER` | Fügt den angegebenen Benutzer zur Gruppe `wheel` hinzu für Administratorrechte |
 | `sudo dnf update` | Führt ein Systemupdate mit Administratorrechten über den Paketmanager DNF aus |
 | `sudo cat /etc/shadow` | Zeigt die gehashten Passwörter der Benutzer an |
+| `sudo mandb` | Dadurch wird die Datenbank der Manual-Seiten mit Administratorrechten neu erstellt |
 
 ## Überprüfungsbefehle
 | Befehl | Funktion |
