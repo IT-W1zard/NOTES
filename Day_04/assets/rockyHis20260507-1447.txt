@@ -1,0 +1,80 @@
+  458  ls
+  459  history
+  460  history 150 > rockyHis$(date +%Y%m%d-%H%M).txt
+  461  cat rockyHis20260506-1548.txt | less
+  462  printenv $PATH
+  463  printenv PATH
+  464  cat rockyHis20260506-1548.txt | less
+  465  echo Bärenhöhle | tr 'a-zäöü 'A-Z?'
+  466  echo Bärenhöhle | tr 'a-zäöü' 'A-Z?'
+  467  echo Bärenhöhle | tr -d 'äöü'
+  468  echo Bären--Höhle | tr -s '-'
+  469  echo Bären--Höhle | tr -s '-' '\t'
+  470  echo Bären--Höhle | tr -s '-' '\n'
+  471  echo Bärenhöhle | tr 'äöü' 'A-Z?'
+  472  echo Bärenhöhleübersicht | tr 'äöü' 'A-Z?'
+  473  echo Bärenhöhleübersichtgebäude | tr 'äöü' 'A-Z?'
+  474  echo Bärenhöhleübersichtgebäudeübersicht | tr 'äöü' 'A-Z?'
+  475  clear
+  476  cat /etc/passwd | less
+  477  cat /etc/passwd | cut -d: -f1,2 | less
+  478  cat /etc/passwd | cut -d: -f4,5 | less
+  479  cat /etc/passwd | less
+  480  cut -d: -f1,2 /etc/passwd | less
+  481  nano datSpalten
+  482  ls
+  483  cat datSpalten | cut -d ' ' -f1,6 | less
+  484  cat /etc/passwd | sort -n
+  485  cat /etc/passwd | sort -r
+  486  clear
+  487  cat /etc/passwd | sort -n | less
+  488  cat /etc/passwd | cut -d: -f1,2 | sort -n | less
+  489  cat /etc/passwd | cut -d: -f1,2 | sort -r | less
+  490  cat /etc/passwd | cut -d: -f4,5 | sort -r | less
+  491  clear
+  492  ls
+  493  find -name '*.old'
+  494  find -name 'hall?*'
+  495  find -name 'hall*'
+  496  cd /dev
+  497  ls | less
+  498  find -name 'tty?'
+  499  find -name 'tty[0-9]'
+  500  find -name 'tty[02]'
+  501  find -name 'tty[0-4]'
+  502  find -name 'tty[^0-4]'
+  503  clear
+  504  cd ~
+  505  cat /etc/services | grep ' 22/tcp'
+  506  cat /etc/services | grep '22/tcp' | less
+  507  cat /etc/services | grep '22/tcp'
+  508  clear
+  509  cat /etc/services | grep ' [0-9][0-9]/tcp'
+  510  clear
+  511  ls -al /etc/{a*,d*}
+  512  clear
+  513  echo Hier;echo Dort
+  514  sudo dnf update; sudo dnf upgrade
+  515  clear
+  516  sudo dnf update; sudo dnf upgrade -j
+  517  clear
+  518  mkdir Ort && touch ./Ort/dat1
+  519  ls ./Ort
+  520  rm -r Ort
+  521  ls ./Ort
+  522  mdir Ort && touch ./Ort/dat1
+  523  mdir Ort && touch ./Ort/dat1 || echo Fehler
+  524  true && echo Wahr || echo Fehler
+  525  false && echo Wahr || echo Fehler
+  526  echo ${USER}123
+  527  cd /etc; echo "Aktuelle Shell: $(pwd)"
+  528  cd..
+  529  cd ..
+  530  cd ~
+  531  (cd /etc; echo "Aktuelle Shell: $(pwd)")
+  532  cd /etc; echo "Aktuelle Shell: $(pwd)"
+  533  cd ~
+  534  (cd /etc; echo "Aktuelle Shell: $(pwd)")
+  535  clear
+  536  history
+  537  history 80 > rockyHis$(date +%Y%m%d-%H%M).txt
