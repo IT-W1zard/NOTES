@@ -1,0 +1,90 @@
+  538  cat rockyHis20260507-1447.txt 
+  539  clear
+  540  cd /
+  541  ls -al
+  542  clear
+  543  cd~
+  544  cd ~
+  545  cd Dokumente
+  546  ls -al
+  547  mkdir datNeu
+  548  ls -al
+  549  touch neuDat
+  550  ls -al
+  551  chmod u-w neuDat 
+  552  ls -al
+  553  chmod 500 neuDat 
+  554  ls -al
+  555  chmod u-x neuDat 
+  556  ls -al
+  557* 
+  558  umask
+  559  nano neuDat
+  560  chmod u+w neuDat 
+  561  nano neuDat
+  562  chmod u-wx datNeu/
+  563  ls -al
+  564  ls -al datNeu/
+  565  cd datNeu/
+  566  chmod u+x datNeu/
+  567  cd datNeu/
+  568  touch dat1 dat2
+  569  chmod u+w datNeu/
+  570  cd ..
+  571  chmod u+w datNeu/
+  572  cd datNeu/
+  573  touch dat1 dat2
+  574  ls
+  575  getfacl dat1
+  576  nano dat1
+  577  chmod u+x dat1
+  578  ls -al dat1
+  579  dat1
+  580  ./dat1
+  581  source dat1
+  582  clear
+  583  umask
+  584  umask 002
+  585  umask
+  586  touch dat3
+  587  ls -al
+  588  cd ..
+  589  cd Dokumente
+  590  tree
+  591  clear
+  592  echo $HISTSIZE
+  593  echo $HISTFILESIZE
+  594  export HISTSIZE=10000
+  595  echo $HISTSIZE
+  596  nano .bashrc
+  597  cd ~
+  598  nano .bashrc
+  599  source .bashrc
+  600  echo $HISTSIZE
+  601  echo $HISTFILESIZE
+  602  clear
+  603  nano orginalDat
+  604  ls -al orginalDat 
+  605  ln orginalDat datHardLink
+  606  ls -al orginalDat datHardLink 
+  607  ls -il orginalDat datHardLink 
+  608  cat orginalDat 
+  609  cat or
+  610  cat datHardLink 
+  611  nano orginalDat 
+  612  cat datHardLink 
+  613  rm orginalDat 
+  614  cat datHardLink 
+  615  nano datSoft
+  616  ls -al datSoft
+  617  ln -s datSoft datSoft1
+  618  cat Soft
+  619  cat datSoft
+  620  cat datSoft1
+  621  ls -il datSoft datSoft1
+  622  nano datSoft
+  623  cat datSoft1
+  624  rm datSoft
+  625  cat datSoft1
+  626  history
+  627  history 90 > rockyHis$(date +%Y%m%d-%H%M).txt
