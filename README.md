@@ -12,7 +12,7 @@ Willkommen im zentralen Hub für die Linux-Essentials-Serie. Dieses Repository d
 graph TD
     A[Tag 01: Das Fundament] --> B[Tag 02: Die Werkzeuge]
     B --> C[Tag 03: Rechte & Sicherheit]
-    C --> D[Tag 04: Networking]
+    C --> D[Tag 04: Shell-Logik & Text]
     D --> E[Tag 05: Automation & Scripting]
     
     style A fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
@@ -34,7 +34,7 @@ Hier findest du die detaillierten Unterlagen zu den einzelnen Schulungstagen:
 | **Tag 01** | ✅ | Shell-Einführung, FHS, Historie | [📖 README](./Day_01/readme.md) |
 | **Tag 02** | ✅ | Hilfe-Systeme, Hardware, Fortg. Datei-OPs | [📖 README](./Day_02/README.md) |
 | **Tag 03** | ✅ | CUPS, Shell-Konfig, Aliases, Redirects | [📖 README](./Day_03/README.md) |
-| **Tag 04** | ⏳ | TBD | [📖 README](./Day_04/readme.md) |
+| **Tag 04** | ✅ | Wildcards, Text-Tools (tr, cut), Logik | [📖 README](./Day_04/README.md) |
 | **Tag 05** | ⏳ | TBD | [📖 README](./Day_05/readme.md) |
 
 ### 📅 Woche 2: Administration
@@ -137,8 +137,8 @@ Diese Themen werden in Kürze vertieft:
 ## 📈 System-Status (Dashboard)
 * **Aktuelle Umgebung:** Rocky Linux 9.x (RHEL-basiert)
 * **Shell:** Bash / ZSH + Oh My Zsh (Konfiguriert)
-* **Fortschritt:** 10% (3 von 30 Modulen abgeschlossen)
+* **Fortschritt:** 13% (4 von 30 Modulen abgeschlossen)
 
 ---
 
-*Dieses Repository wird kontinuierlich gepflegt. Letztes Update: 06. Mai 2026.*
+*Dieses Repository wird kontinuierlich gepflegt. Letztes Update: 08. Mai 2026.*

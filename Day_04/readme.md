@@ -1,86 +1,103 @@
-# 🌐 Linux Essentials - Tag 04
+# 🛠️ Linux Essentials - Tag 04
 
 ![Linux Essentials Day 04 Header](./header.png)
 
-Am vierten Tag tauchen wir in die Welt der Netzwerke ein. Wir lernen, wie Linux kommuniziert, wie man IP-Adressen verwaltet und wie man sich über **SSH** sicher mit entfernten Systemen verbindet.
+Am vierten Tag vertiefen wir unser Wissen über die Shell-Logik, lernen mächtige Werkzeuge zur Textverarbeitung kennen und meistern den Einsatz von Wildcards für effiziente Suchoperationen.
 
 ---
 
 ## 📑 Inhaltsverzeichnis
-- [Netzwerk-Grundlagen](#-netzwerk-grundlagen)
-- [Wichtige Netzwerk-Befehle](#-wichtige-netzwerk-befehle)
-- [Konfigurationsdateien](#-konfigurationsdateien)
-- [SSH: Secure Shell](#-ssh-secure-shell)
-- [Ports & Sockets](#-ports--sockets)
-- [Zurück zum Hauptmenü](#-zurück-zum-hauptmenü)
+- [Wildcards & Globbing](#-wildcards--globbing)
+- [Textverarbeitung (tr, cut, sort)](#-textverarbeitung-tr-cut-sort)
+- [Shell-Operatoren & Logik](#-shell-operatoren--logik)
+- [Subshells & Befehlssubstitution](#-subshells--befehlssubstitution)
+- [Systempflege (DNF)](#-systempflege-dnf)
+- [Ressourcen & Dokumente](#-ressourcen--dokumente)
 
 ---
 
-## 🏗 Netzwerk-Grundlagen
-Linux ist von Grund auf als Netzwerk-Betriebssystem konzipiert. Jedes System hat mindestens ein Netzwerkinterface (z.B. `eth0`, `ens33` oder das Loopback-Interface `lo`).
+## 🔍 Wildcards & Globbing
+Wildcards (Platzhalter) ermöglichen es, Dateimuster zu beschreiben, statt jede Datei einzeln zu benennen.
 
-### IP-Adressierung
-- **IPv4:** 32-Bit Adresse (z.B. `192.168.1.10`).
-- **IPv6:** 128-Bit Adresse (z.B. `fe80::...`).
-- **DHCP:** Automatische Zuweisung von IP-Adressen.
-- **Statische IP:** Manuelle Konfiguration für Server.
-
----
-
-## 🛠 Wichtige Netzwerk-Befehle
-Zur Diagnose und Konfiguration nutzen wir moderne Werkzeuge der `iproute2`-Suite sowie klassische Tools.
-
-| Befehl | Funktion |
-| :--- | :--- |
-| `ip addr` | Zeigt alle Netzwerkinterfaces und deren IP-Adressen an. |
-| `ip route` | Zeigt die Routing-Tabelle (Standard-Gateway) an. |
-| `ping <Host>` | Prüft die Erreichbarkeit eines anderen Systems. |
-| `nmcli` | Kommandozeilen-Tool für den NetworkManager (Standard in Rocky/RHEL). |
-| `nmtui` | Grafische (Text-basierte) Oberfläche zur Netzwerkkonfiguration. |
-| `dig <Domain>` | DNS-Abfrage (Domain Information Groper). |
+| Zeichen | Bedeutung | Beispiel |
+| :---: | :--- | :--- |
+| `*` | Beliebig viele Zeichen (auch keine). | `ls *.txt` |
+| `?` | Genau ein beliebiges Zeichen. | `find -name "hall?*"` |
+| `[abc]` | Genau eines der Zeichen in der Klammer. | `ls tty[02]` |
+| `[0-9]` | Ein Zeichen aus dem angegebenen Bereich. | `ls tty[0-4]` |
+| `[^0-9]` | Ein Zeichen, das **nicht** im Bereich liegt. | `ls tty[^0-4]` |
+| `{a,b}` | **Brace Expansion**: Erzeugt eine Liste von Strings. | `ls /etc/{a*,d*}` |
 
 ---
 
-## 📄 Konfigurationsdateien
-Die wichtigsten Einstellungen werden in einfachen Textdateien unter `/etc` gespeichert.
+## 📝 Textverarbeitung (tr, cut, sort)
+Linux bietet spezialisierte Werkzeuge, um Textströme in Echtzeit zu manipulieren.
 
-- `/etc/hostname`: Der Name des lokalen Systems.
-- `/etc/hosts`: Lokale Namensauflösung (Mapping von IP zu Name).
-- `/etc/resolv.conf`: Konfiguration der DNS-Nameserver.
-- `/etc/NetworkManager/`: Hauptverzeichnis für NetworkManager-Einstellungen.
-
----
-
-## 🔐 SSH: Secure Shell
-SSH ist der Standard für den sicheren Fernzugriff auf Linux-Server. Es verschlüsselt die gesamte Kommunikation.
-
-### Grundbefehle
+### 🔄 tr (Translate)
+Dient zum Ersetzen oder Löschen von Zeichen.
 ```bash
-ssh user@192.168.1.50       # Verbindung zu einem Remote-Host
-ssh -p 2222 user@host       # Verbindung über einen alternativen Port
-exit                        # Beendet die SSH-Sitzung
+echo "Bärenhöhle" | tr 'a-zäöü' 'A-Z?'   # Ersetzt Klein- durch Großbuchstaben & Umlaute
+echo "Bären--Höhle" | tr -s '-'          # "Squeeze": Mehrfache Bindestriche zu einem
+echo "Bärenhöhle" | tr -d 'äöü'          # Löscht alle Umlaute
 ```
 
-### Key-based Authentication (Best Practice)
-Statt Passwörtern nutzen wir kryptografische Schlüsselpaare (Public/Private Key).
-1. `ssh-keygen`: Erzeugt ein neues Schlüsselpaar.
-2. `ssh-copy-id user@host`: Überträgt den öffentlichen Schlüssel auf den Server.
+### ✂️ cut (Spalten extrahieren)
+Extrahiert gezielt Felder aus einer Datei (ideal für CSV-ähnliche Daten wie `/etc/passwd`).
+```bash
+cut -d: -f1,2 /etc/passwd       # Nutzt ':' als Trenner und gibt Feld 1 & 2 aus
+cat data | cut -d ' ' -f1,6     # Nutzt Leerzeichen als Trenner
+```
+
+### 📊 sort (Sortieren)
+Sortiert die Eingabe alphabetisch oder numerisch.
+```bash
+cat /etc/passwd | sort -n       # Numerische Sortierung
+cat /etc/passwd | sort -r       # Reverse (umgekehrte) Sortierung
+```
 
 ---
 
-## 🔌 Ports & Sockets
-Dienste hören auf bestimmten "Ports", um Verbindungen entgegenzunehmen.
+## ⚡ Shell-Operatoren & Logik
+Operatoren steuern den Ablauf von Befehlsketten basierend auf Erfolg oder Misserfolg.
 
-| Port | Dienst | Beschreibung |
+| Operator | Logik | Beschreibung |
 | :---: | :--- | :--- |
-| **22** | **SSH** | Secure Shell Fernzugriff. |
-| **80** | **HTTP** | Unverschlüsseltes Web (WWW). |
-| **443** | **HTTPS** | Verschlüsseltes Web (SSL/TLS). |
-| **53** | **DNS** | Namensauflösung. |
+| `;` | **Sequenz** | Führt Befehle nacheinander aus. |
+| `&&` | **UND** | Führt den nächsten Befehl nur aus, wenn der vorherige **erfolgreich** war. |
+| `||` | **ODER** | Führt den nächsten Befehl nur aus, wenn der vorherige **fehlgeschlagen** ist. |
 
-### Überprüfung aktiver Verbindungen
-- `ss -tunlp`: Zeigt alle offenen Ports und die zugehörigen Prozesse an.
-- `netstat -an`: Klassisches Tool für Netzwerkstatistiken (oft durch `ss` ersetzt).
+**Beispiel:**
+```bash
+mkdir Test && touch ./Test/file || echo "Fehler beim Erstellen"
+```
+
+---
+
+## 🐚 Subshells & Befehlssubstitution
+Manchmal muss ein Befehl in einer isolierten Umgebung laufen oder sein Ergebnis als Argument dienen.
+
+- **Subshell `( )`**: Befehle in Klammern laufen in einem eigenen Prozess. Änderungen am Verzeichnis (`cd`) oder Variablen betreffen die Haupt-Shell nicht.
+  - `(cd /etc; echo "Aktuelle Shell: $(pwd)")`
+- **Befehlssubstitution `$( )`**: Nutzt die Ausgabe eines Befehls als Teil eines anderen Befehls.
+  - `history > history_$(date +%F).txt`
+
+---
+
+## ⚙️ Systempflege (DNF)
+Die Verwaltung von Paketen und System-Updates ist eine Kernaufgabe.
+
+```bash
+sudo dnf update      # Aktualisiert die Paketdatenbank
+sudo dnf upgrade     # Installiert die neuesten Versionen aller Pakete
+```
+
+---
+
+## 📚 Ressourcen & Dokumente
+Im [Assets](./assets)-Verzeichnis finden Sie die Mitschriften und Unterlagen zu diesem Tag:
+
+- [Linux Sonderzeichen & Kommando-Endezeichen (PDF)](./assets/LinuxSonder-KommandoEndeZeichen.pdf)
+- [Shell-Historie Tag 04 (TXT)](./assets/rockyHis20260507-1447.txt)
 
 ---
 
@@ -89,4 +106,5 @@ Dienste hören auf bestimmten "Ports", um Verbindungen entgegenzunehmen.
 
 ---
 
-*Erstellt am 06. Mai 2026 für den Linux-Essentials Kurs.*
+*Erstellt am 07. Mai 2026 für den Linux-Essentials Kurs.*
+
