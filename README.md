@@ -13,13 +13,15 @@ graph TD
     A[Tag 01: Das Fundament] --> B[Tag 02: Die Werkzeuge]
     B --> C[Tag 03: Rechte & Sicherheit]
     C --> D[Tag 04: Shell-Logik & Text]
-    D --> E[Tag 05: Automation & Scripting]
+    D --> E[Tag 05: Dateisicherheit & Links]
+    E -.-> F[Tag 06: Administration & User]
     
     style A fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
-    style B fill:#1565c0,stroke:#fff,stroke-width:2px,color:#fff
-    style C fill:#1e88e5,stroke:#fff,stroke-width:2px,color:#fff
-    style D fill:#42a5f5,stroke:#fff,stroke-width:2px,color:#fff
-    style E fill:#90caf9,stroke:#fff,stroke-width:2px,color:#fff
+    style B fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
+    style C fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
+    style D fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
+    style E fill:#0d47a1,stroke:#fff,stroke-width:2px,color:#fff
+    style F fill:#90caf9,stroke:#fff,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
 ```
 
 ---
@@ -35,7 +37,7 @@ Hier findest du die detaillierten Unterlagen zu den einzelnen Schulungstagen:
 | **Tag 02** | ✅ | Hilfe-Systeme, Hardware, Fortg. Datei-OPs | [📖 README](./Day_02/README.md) |
 | **Tag 03** | ✅ | CUPS, Shell-Konfig, Aliases, Redirects | [📖 README](./Day_03/README.md) |
 | **Tag 04** | ✅ | Wildcards, Text-Tools (tr, cut), Logik | [📖 README](./Day_04/README.md) |
-| **Tag 05** | ⏳ | TBD | [📖 README](./Day_05/readme.md) |
+| **Tag 05** | ✅ | Rechte (chmod), Links, umask, Shell-History | [📖 README](./Day_05/README.md) |
 
 ### 📅 Woche 2: Administration
 | Modul | Status | Fokus-Themen | Link |
@@ -99,12 +101,13 @@ Hier sind die essenziellen Informationen zusammengefasst, die über alle Kurstag
 </details>
 
 <details>
-<summary><b>🛡 Dateirechte & Besitz (Demnächst...)</b> (Klicken zum Ausklappen)</summary>
+<summary><b>🛡 Dateirechte & Besitz</b> (Klicken zum Ausklappen)</summary>
 
-Diese Themen werden in Kürze vertieft:
 * `chmod`: Ändern von Zugriffsrechten (Oktal vs. Symbolisch).
 * `chown`: Ändern von Besitzverhältnissen.
-* **SUID/SGID & Sticky Bit:** Fortgeschrittene Berechtigungen.
+* `umask`: Standard-Berechtigungen für neue Dateien.
+* **ACL (Access Control Lists):** Fein-granulare Rechteverwaltung.
+* **Links:** Hardlinks vs. Softlinks (ln / ln -s).
 
 </details>
 
@@ -129,16 +132,17 @@ Diese Themen werden in Kürze vertieft:
 | **Navigation** | `cd`, `ls`, `pwd`, `tree` |
 | **Info** | `uname`, `lscpu`, `free`, `df`, `id` |
 | **Hilfe** | `man`, `info`, `whatis`, `--help` |
-| **Manipulation** | `mkdir`, `cp`, `mv`, `rm`, `touch` |
-| **Text** | `cat`, `less`, `grep`, `diff`, `nano` |
+| **Manipulation** | `mkdir`, `cp`, `mv`, `rm`, `touch`, `ln` |
+| **Text** | `cat`, `less`, `grep`, `diff`, `nano`, `chmod` |
 
 ---
 
 ## 📈 System-Status (Dashboard)
 * **Aktuelle Umgebung:** Rocky Linux 9.x (RHEL-basiert)
 * **Shell:** Bash / ZSH + Oh My Zsh (Konfiguriert)
-* **Fortschritt:** 13% (4 von 30 Modulen abgeschlossen)
+* **Fortschritt:** 17% (5 von 30 Modulen abgeschlossen)
 
 ---
 
 *Dieses Repository wird kontinuierlich gepflegt. Letztes Update: 08. Mai 2026.*
+
