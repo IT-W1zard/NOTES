@@ -1,0 +1,60 @@
+  622  cat datSoft1
+  623  rm datSoft
+  624  cat datSoft1
+  625  history
+  626  history 90 > rockyHis$(date +%Y%m%d-%H%M).txt
+  627  sudo renice -5 4268
+  628  history
+  629  ./usr/bin/firefox
+  630  cd ..
+  631  ./usr/bin/firefox
+  632  cd ..
+  633  ./usr/bin/firefox
+  634  exit
+  635  kill 3468
+  636  ps
+  637  kill -l
+  638  kill -19 3554
+  639  kill -18 3554
+  640  job
+  641  jobs
+  642  fg 3554
+  643  fg %1
+  644  kill -19 3554
+  645  history
+  646  find / -perm -4000 2> /dev/null | wc -l
+  647  find / -perm -2000 2> /dev/null | wc -l
+  648  find / -perm -1000 2> /dev/null | wc -l
+  649  find / -perm 1777 2> /dev/null | wc -l
+  650  find / -perm 1777 2> /dev/null | lessStickies
+  651  find / -perm 1777 2> /dev/null > lessStickies
+  652  cat lessStickies
+  653  find / -perm -1000 2> /dev/null > allStickies
+  654  cat allStickies 
+  655  diff allStickies lessStickies 
+  656  sudo ls -al /run/udev/data/b253:0 /run/udev/data/b253:1 /sys/fs/bpf /var/lib/gdm
+  657  sudo ls -dal /run/udev/data/b253:0 /run/udev/data/b253:1 /sys/fs/bpf /var/lib/gdm
+  658  clear
+  659  top
+  660  clear
+  661  top
+  662  jobs
+  663  fg %1
+  664  jobs
+  665  fg %1
+  666  clear
+  667  pstree -p
+  668  clear
+  669  pstree -p | less
+  670  sleep 100 &
+  671  jobs
+  672  fg %1
+  673  nice -15 top
+  674  fg %1
+  675  clear
+  676  sudo dnf install htop
+  677  sudo dnf install epel-release
+  678  sudo dnf install htop
+  679  htop
+  680* 
+  681  history 60 > rockyHis$(date +%Y%m%d-%H%M).txt
