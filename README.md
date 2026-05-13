@@ -145,9 +145,9 @@ Hier sind die essenziellen Informationen zusammengefasst, die über alle Kurstag
 ## 📈 System-Status (Dashboard)
 * **Aktuelle Umgebung:** Rocky Linux 9.x (RHEL-basiert)
 * **Shell:** Bash / ZSH + Oh My Zsh (Konfiguriert)
-* **Fortschritt:** 17% (5 von 30 Modulen abgeschlossen)
+* **Fortschritt:** 23% (7 von 30 Modulen abgeschlossen)
 
 ---
 
-*Dieses Repository wird kontinuierlich gepflegt. Letztes Update: 08. Mai 2026.*
+*Dieses Repository wird kontinuierlich gepflegt. Letztes Update: 13. Mai 2026.*
 

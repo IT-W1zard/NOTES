@@ -1,92 +1,117 @@
-# 📦 Day 07: Archive, Kompression & Software-Builds
+# 📦 Day 07: Archivierung, Kompression & Software-Builds (LPIC-1 Fokus)
+
+Dieses Modul deckt zentrale Themen der LPIC-1 Prüfung (LPI-101) ab, insbesondere die Lernziele 103.3 (Archivierung/Kompression) und 103.5 (Prozess-Management).
 
 ---
 
-## 🎯 Lernziele für heute
-* Erstellen und Verwalten von Datei-Archiven mit `tar`.
-* Verstehen der verschiedenen Kompressionsalgorithmen (Gzip, Bzip2, XZ).
-* Kombinieren von Archivierung und Kompression.
-* Einführung in moderne Build-Systeme am Beispiel von `meson`.
+## 🎯 Lernziele (LPIC-1 relevant)
+*   **Archivierung:** `tar`, `cpio` und `dd` sicher beherrschen.
+*   **Kompression:** Algorithmen-Vergleich und die `*cat`-Werkzeuge.
+*   **Build-Management:** Kompilierung von Quellcode und Umgang mit Shared Libraries (`ldd`).
+*   **Signale & Prioritäten:** Vollständige Signal-Tabelle und Prozess-Hierarchien (Zombies).
 
 ---
 
-## 📂 1. Der Tape Archiver (`tar`)
+## 📂 1. Archivierung: tar, cpio & dd
 
-`tar` ist das Standard-Werkzeug, um viele Dateien und Verzeichnisse in einer einzigen Datei (einem "Tarball") zusammenzufassen. **Wichtig:** `tar` allein komprimiert nicht, es packt nur zusammen.
+### A. Der Standard: `tar` (Tape Archiver)
+LPIC verlangt das Verständnis der Flags ohne führendes Bindestrich (BSD-Stil) und mit Bindestrich (GNU-Stil).
 
-### Grundbefehle:
-| Flag | Bedeutung | Beschreibung |
-| :---: | :--- | :--- |
-| `-c` | **c**reate | Erstellt ein neues Archiv. |
-| `-x` | e**x**tract | Entpackt ein Archiv. |
-| `-t` | **t**ist | Listet den Inhalt eines Archivs auf, ohne zu entpacken. |
-| `-v` | **v**erbose | Zeigt detailliert an, welche Dateien verarbeitet werden. |
-| `-f` | **f**ile | Gibt den Dateinamen des Archivs an (muss immer am Ende der Flag-Liste stehen). |
+| Flag | Langform | Beschreibung |
+| :--- | :--- | :--- |
+| `c` | `--create` | Neues Archiv erstellen. |
+| `x` | `--extract` | Archiv entpacken. |
+| `t` | `--list` | Inhalt auflisten. |
+| `u` | `--update` | Nur Dateien hinzufügen, die neuer als im Archiv sind. |
+| `r` | `--append` | Dateien bedingungslos anhängen. |
+| `v` | `--verbose` | Fortschritt anzeigen. |
+| `f` | `--file` | Dateiname (muss zwingend als letztes Flag stehen). |
+| `p` | `--preserve-permissions` | Erhält die ursprünglichen Dateirechte (Standard für Root). |
 
-**Beispiele:**
+**Profi-Befehle:**
 ```bash
-tar -cvf archiv.tar /pfad/zum/ordner  # Archiv erstellen
-tar -tvf archiv.tar                   # Inhalt ansehen
-tar -xvf archiv.tar                   # Archiv entpacken
+# Archiv inkrementell aktualisieren
+tar -uf backup.tar ./Dokumente
+
+# Nur Dateien extrahieren, die nach einem Datum geändert wurden
+tar -N '2026-05-01' -xf backup.tar
 ```
 
+### B. Die Alternative: `cpio`
+`cpio` liest Dateilisten von `stdin`. Häufig in Kombination mit `find`.
+*   **Copy-out (Archiv erstellen):** `find . -name "*.txt" | cpio -ov > archiv.cpio`
+*   **Copy-in (Entpacken):** `cpio -iv < archiv.cpio`
+
+### C. Bit-für-Bit: `dd` (Data Duplicator)
+Wird für Backups ganzer Partitionen oder zum Erstellen von ISOs genutzt.
+```bash
+dd if=/dev/sda of=/pfad/zu/disk.img bs=4M conv=noerror,sync
+```
+*   `if`/`of`: Input/Output File.
+*   `bs`: Blocksize (beschleunigt den Prozess).
+*   `conv=noerror`: Fährt bei Lesefehlern fort.
+
 ---
 
-## 🗜 2. Kompressionsalgorithmen
+## 🗜 2. Kompression & Transparenter Zugriff
 
-Um Speicherplatz zu sparen, werden Archive komprimiert. Hier die gängigsten Tools im Vergleich:
+LPIC legt Wert auf die Werkzeuge, die den Inhalt komprimierter Dateien anzeigen, ohne sie permanent zu entpacken.
 
-| Tool | Dateiendung | Algorithmus | Fokus |
+| Algorithmus | Tool | Decompress | View Content |
 | :--- | :--- | :--- | :--- |
-| `gzip` | `.gz` | DEFLATE | Schnelligkeit, geringe CPU-Last. |
-| `bzip2` | `.bz2` | Burrows-Wheeler | Gutes Gleichgewicht zwischen Zeit & Rate. |
-| `xz` | `.xz` | LZMA2 | Maximale Kompression (benötigt viel RAM/Zeit). |
+| **Gzip** | `gzip` | `gunzip` | `zcat`, `zless` |
+| **Bzip2** | `bzip2` | `bunzip2` | `bzcat`, `bzless` |
+| **XZ** | `xz` | `unxz` | `xzcat`, `xzless` |
+
+**Beispiel für LPIC:**
+"Wie lesen Sie eine `.gz`-Logdatei, ohne sie zu entpacken?"
+👉 `zcat /var/log/syslog.gz | less`
 
 ---
 
-## 🚀 3. Alles in einem Schritt (tar + Kompression)
+## 🛠 3. Software-Builds & Shared Libraries
 
-Moderne `tar`-Versionen können die Kompression direkt über Flags mitsteuern:
+Wenn Software gebaut wird (`meson`, `make`), müssen auch die Bibliotheks-Abhängigkeiten stimmen.
 
-| Flag | Kompression | Typische Endung | Befehl-Beispiel |
-| :---: | :--- | :--- | :--- |
-| `-z` | **gzip** | `.tar.gz` / `.tgz` | `tar -czvf backup.tar.gz /home` |
-| `-j` | **bzip2** | `.tar.bz2` | `tar -cjvf backup.tar.bz2 /home` |
-| `-J` | **xz** | `.tar.xz` | `tar -cJvf backup.tar.xz /home` |
+### Der Build-Workflow (Modern vs. Klassisch)
+1.  **Meson (Modern):** `meson setup build` -> `meson compile -C build`
+2.  **Autotools (Klassisch):** `./configure` -> `make` -> `sudo make install`
 
-> [!NOTE]
-> Beim Entpacken erkennt `tar` das Format meist automatisch: `tar -xvf datei.tar.gz` funktioniert oft ohne das `-z`.
-
----
-
-## 🛠 4. Software-Builds mit Meson
-
-Wenn Software nicht über einen Paketmanager (wie `dnf`) verfügbar ist, muss sie oft selbst kompiliert werden. `meson` ist ein modernes Build-System (Alternative zu CMake/Autotools).
-
-### Der typische Meson-Workflow:
-1. **Konfiguration:** Meson prüft die Abhängigkeiten und bereitet den Build-Ordner vor.
-   ```bash
-   meson setup builddir
-   ```
-2. **Kompilierung:** Der eigentliche Build-Prozess (Umwandeln von Quellcode in Binärdateien).
-   ```bash
-   meson compile -C builddir
-   ```
-3. **Installation:** Kopieren der fertigen Dateien in die Systemverzeichnisse.
-   ```bash
-   sudo meson install -C builddir
-   ```
+### Shared Libraries prüfen (`ldd`)
+Jedes Binary benötigt Bibliotheken. LPIC-Thema: "Was tun, wenn ein Programm nicht startet?"
+```bash
+ldd /usr/local/bin/glmark2
+```
+*   Zeigt alle geladenen `.so`-Dateien (Shared Objects).
+*   Falls eine fehlt: "not found".
 
 ---
 
-## 📝 Praktische Übungen (Day 07)
+## 🚦 4. Prozess-Management & Signal-Referenz
 
-1. **Archiv erstellen:** Erstelle ein unkomprimiertes Archiv deiner Dokumente.
-2. **Kompression vergleichen:**
-   - Erstelle ein `.tar.gz`, ein `.tar.bz2` und ein `.tar.xz` desselben Ordners.
-   - Vergleiche die Dateigrößen mit `ls -lh`.
-3. **Selektives Entpacken:** Suche im Handbuch (`man tar`) nach der Option, nur eine einzelne Datei aus einem großen Archiv zu extrahieren.
-4. **Meson-Simulation:** Navigiere in ein (fiktives oder bereitgestelltes) Projektverzeichnis und führe die Schritte `setup` und `compile` durch.
+### Die essenzielle Signal-Tabelle
+| ID | Name | Beschreibung |
+| :--- | :--- | :--- |
+| **1** | `SIGHUP` | Hangup (Reload von Konfigurationsdateien). |
+| **2** | `SIGINT` | Interrupt (Strg+C). |
+| **9** | `SIGKILL` | Sofortiges Beenden (nicht abfangbar). |
+| **15** | `SIGTERM` | Terminierung (sauberes Beenden, Standard). |
+| **17** | `SIGCHLD` | Kind-Prozess beendet oder pausiert (relevant für Zombies). |
+| **18** | `SIGCONT` | Pausierten Prozess fortsetzen. |
+| **19** | `SIGSTOP` | Prozess pausieren (nicht abfangbar). |
+
+### Zombies & Exit-Status
+Ein Zombie entsteht, wenn der Parent das Signal `SIGCHLD` nicht korrekt verarbeitet (kein `wait()` System-Call).
+*   **Exit Status:** Mit `echo $?` kann der Exit-Status des letzten Kommandos geprüft werden (0 = Erfolg).
+
+---
+
+## 📝 LPIC-Übungsszenarien (Day 07)
+
+1.  **Szenario Archivierung:** Erstellen Sie ein mit `bzip2` komprimiertes Archiv des Verzeichnisses `/etc`, aber schließen Sie alle Dateien aus, die auf `.conf` enden (`--exclude`).
+2.  **Szenario Filter:** Nutzen Sie `find` und `cpio`, um alle Dateien in `/home`, die dem User `student` gehören, in ein Archiv zu kopieren.
+3.  **Szenario Troubleshooting:** Ein selbst kompiliertes Programm startet nicht. Nutzen Sie `ldd`, um herauszufinden, welche Bibliothek fehlt.
+4.  **Szenario Signale:** Schicken Sie einem Prozess erst das Signal 19 (`SIGSTOP`) und reaktivieren Sie ihn anschließend mit Signal 18 (`SIGCONT`).
 
 ---
 
