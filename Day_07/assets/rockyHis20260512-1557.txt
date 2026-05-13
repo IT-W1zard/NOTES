@@ -1,0 +1,135 @@
+  682  top -bin 5 > myTop5
+  683  cat myTop5 | less
+  684  cd Dokumente
+  685  ls
+  686  tar -xvf glmark2.tar
+  687  s
+  688  ls
+  689  cd glmark2
+  690  glmark2
+  691  ls -al
+  692  ls
+  693  cd Dokumente
+  694  ls
+  695  tar -cf archiv.tar ./
+  696  ls
+  697  tar -tvf archiv.tar
+  698  tar -cf archiv.tar
+  699  tar -cf archiv.tar ./Kontinente/
+  700  tar -tvf archiv.tar
+  701  tar -tvf archiv.tar | less
+  702  tar --delete -f archiv.tar Kontinente/Italien
+  703  tar --delete -f archiv.tar ./Kontinente/Italien
+  704  tar -tvf archiv.tar | less
+  705  ls
+  706  tar -rf archiv.tar ./datNeu
+  707  tar -tvf archiv.tar | less
+  708  tar -xf archiv.tar ./datNeu
+  709  cd datNeu
+  710  ls
+  711  tar -xf /home/semus/Dokumente/archiv.tar
+  712  tar -xf ~/Dokumente/archiv.tar
+  713  ls
+  714  rm -rf datNeu Kontinente
+  715  ls
+  716  tar -xf ~/Dokumente/archiv.tar ./Kontinente
+  717  ls
+  718  cd ..
+  719  ls
+  720  tar -czf archiv.tar.gz ./Kontinente ./datNeu
+  721  ls
+  722  ls -al
+  723  tar -tvf archiv.tar.gz | less
+  724  tar -cjf archiv.tar.bz2 ./Kontinente ./datNeu
+  725  ls -al
+  726  tar -cJf archiv.tar.xz ./Kontinente ./datNeu
+  727  ls -al
+  728  ls -alm
+  729  ls -alh
+  730  tar -c ./Kontinente ./neuDat | gzip -9 > archivKR9.tar.gz
+  731  ls -al
+  732  clear
+  733  sudo dnf groupinstall "Development Tools"
+  734  git --version
+  735  gcc --version
+  736  python --version
+  737  g++ --version
+  738  sudo dnf install meson
+  739  sudo dnf clean all
+  740  sudo dnf makecache
+  741  sudo dnf install meson
+  742  sudo dnf config-manager --set-enabled epel
+  743  sudo dnf install meson
+  744  sudo dnf config-manager --set-enabled crb
+  745  sudo dnf install meson
+  746  meson --version
+  747  git clone https://github.com/glmark2/glmark2.git
+  748  ls
+  749  cd glmark2
+  750  meson setup build
+  751  meson build -Dflavour=x11-gl
+  752  meson build -Dflavour=x11-g1
+  753  meson setup build -Dflavour=x11-gl
+  754  meson setup build -Dflavour=x11-gl, x11-glesv2, wayland-gl, wayland-glesv2
+  755  meson setup build -Dflavours=x11-gl
+  756  meson setup build -Dflavors=x11-gl
+  757  meson setup build -Dflavors=x11-gl, x11-glesv2, wayland-gl, wayland-glesv2
+  758  sudo dnf install libX11-devel libXdamage-devel libXext-devel libXfixes-devel libxcb-devel wayland-devel libdrm-devel mesa-libGL-devel mesa-libGLES-devel mesa-libgbm-devel
+  759  meson setup build -Dflavors=x11-gl, x11-glesv2, wayland-gl, wayland-glesv2
+  760  meson compile -C build
+  761  sudo meson compile -C build
+  762  meson setup build -Dflavors=x11-gl
+  763  meson compile -C build
+  764  sudo meson compile -C build
+  765  ls -al
+  766  meson setup build -Dflavors=x11-gl
+  767  meson compile -C build
+  768  sudo dnf install libpng-devel libpng-turbo-devel
+  769  sudo dnf install libjpg-turbo-devel
+  770  sudo dnf install libjpeg-turbo-devel
+  771  meson setup build -Dflavors=x11-gl
+  772  meson compile -C build
+  773  rm -rf builddir
+  774  meson setup build -Dflavors=x11-gl
+  775  meson compile -C build
+  776  rm -rf builddir
+  777  meson setup build
+  778  meson compile -C build
+  779  meson setup build -Dflavors=x11-gl
+  780  sudo meson install -C build
+  781  sudo dnf install libpng-devel
+  782  rm -rf builddir
+  783  meson setup build -Dflavors=x11-gl
+  784  meson compile -C build
+  785  meson install -C build
+  786  glmark2
+  787  clear
+  788  sudo nice -19 glmark2
+  789  glmark2
+  790  sudo nice -19 glmark2
+  791  sudo nice 19 glmark2
+  792  nice -19 glmark2
+  793  sudo nice --20 glmark2
+  794  nice --20 glmark2
+  795  glmark2
+  796  cd ./Dokumente/glmark2
+  797  glmark2 
+  798  cd ./Dokumente/glmark2
+  799  sudo nice --20 glmark2
+  800  nice --20 glmark2
+  801  nice -19 glmark2
+  802  ps -ef
+  803  clear
+  804  cd ..
+  805  ps aux | grep 'Z'
+  806  ps -ef 3081
+  807  kill SIGCHLD 1130
+  808  kill -SIGCHLD 1130
+  809  kill -s SIGCHLD 1130
+  810  top
+  811  sudo renice -20 57519
+  812  sudo renice -20 57490
+  813  sudo renice -20 57581
+  814  sudo renice -20 57583
+  815  history
+  816  history 135 > rockyHis$(date +%Y%m%d-%H%M).txt
