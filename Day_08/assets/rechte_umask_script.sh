@@ -1,30 +1,50 @@
 #!/bin/bash
 
-# Array mit den umask-Werten von der Tafel und aus der PDF
-umasks=("022" "031" "035" "057" "077" "024" "046" "013" "026" "135" "356" "246")
+### <summary>
+### Iteriert über vordefinierte umask-Werte, erstellt Test-Objekte und validiert die Berechtigungen.
+### </summary>
+### <remarks>
+### Berücksichtigt die Werte aus 1000179944.jpg und 1000179945.jpg.
+### </remarks>
 
-# Basisverzeichnis für die Erstellung
-base_dir="umask_test"
-mkdir -p "$base_dir"
-cd "$base_dir" || exit
+# Liste der umask-Werte basierend auf Tafel und PDF
+readonly UMASK_VALUES=("022" "031" "035" "057" "077" "024" "046" "013" "026" "135" "356" "246")
 
-for mask in "${umasks[@]}"; do
-    # umask für den aktuellen Schleifendurchlauf setzen
-    umask "$mask"
+# Arbeitsverzeichnis vorbereiten
+readonly TARGET_DIR="umask_validation_report"
+mkdir -p "$TARGET_DIR"
+cd "$TARGET_DIR" || exit 1
+
+for current_mask in "${UMASK_VALUES[@]}"; do
+    ### <description>
+    ### Setzt die umask und erstellt Referenzobjekte zur Überprüfung der Rechte-Logik.
+    ### </description>
+    umask "$current_mask"
     
-    # Namen für Verzeichnis und Datei definieren
-    dir_name="dir_mask_$mask"
-    file_name="file_mask_$mask"
+    dir_name="dir_mask_${current_mask}"
+    file_name="file_mask_${current_mask}"
     
-    # Verzeichnis und Datei erstellen
     mkdir "$dir_name"
     touch "$file_name"
     
-    # Ausgabe der Ergebnisse mit stat-Prüfung
-    echo "--- umask: $mask ---"
+    echo "--- Testlauf mit umask: $current_mask ---"
     
-    # %a = Oktale Rechte, %A = Symbolische Rechte, %n = Dateiname
-    printf "Verzeichnis: %s | Rechte: %a (%A)\n" "$dir_name" "$(stat -c "%a" "$dir_name")" "$(stat -c "%A" "$dir_name")"
-    printf "Datei:       %s | Rechte: %a (%A)\n" "$file_name" "$(stat -c "%a" "$file_name")" "$(stat -c "%A" "$file_name")"
+    ### <remarks>
+    ### Korrigierte printf-Zuweisung: 
+    ### %s (String: Name) -> %a (Oktal: Rechte) -> %A (Symbolisch: Rechte)
+    ### </remarks>
+    
+    # Validierung Verzeichnis
+    printf "Verzeichnis: %-15s | Rechte Oktal: %4s | Symbolisch: %s\n" \
+        "$dir_name" \
+        "$(stat -c "%a" "$dir_name")" \
+        "$(stat -c "%A" "$dir_name")"
+        
+    # Validierung Datei
+    printf "Datei:       %-15s | Rechte Oktal: %4s | Symbolisch: %s\n" \
+        "$file_name" \
+        "$(stat -c "%a" "$file_name")" \
+        "$(stat -c "%A" "$file_name")"
+    
     echo ""
 done
